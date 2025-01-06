@@ -54,7 +54,7 @@ class CustomerController extends Controller
         $request->validate([
             'first_name' => 'required|string',
             'last_name' => 'nullable|string',
-            'mobile' => 'required|numeric|unique:users,mobile,'.$customer->user->id,
+            'mobile' => 'required|digits_between:10,12|unique:users,mobile,'.$customer->user->id,
             'email' => 'required|unique:users,email,'.$customer->user->id,
             'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png',
         ]);

@@ -33,7 +33,7 @@ class RegistrationRequest extends FormRequest
         ];
 
         if ($this->type === 'mobile') {
-            $rules['mobile'] = 'required|numeric|unique:users,mobile';
+            $rules['mobile'] = 'required|digits_between:10,12|unique:users,mobile';
         }
 
         if ($this->type === 'email') {
@@ -49,7 +49,7 @@ class RegistrationRequest extends FormRequest
                 $rules['email'] = 'required|unique:users|email';
                 $this['email'] = $this->contact;
             } else {
-                $rules['mobile'] = 'required|numeric|unique:users';
+                $rules['mobile'] = 'required|digits_between:10,12|unique:users';
                 $this['mobile'] = $this->contact;
             }
         }
