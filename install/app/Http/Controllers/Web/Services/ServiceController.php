@@ -53,6 +53,12 @@ class ServiceController extends Controller
 
         return redirect()->route('service.index')->with('success', 'Service updated successfully');
     }
+    public function getServicesByShop($shopId)
+{
+    $shop = \App\Models\Store::findOrFail($shopId); // Find the shop by ID
+    $services = $shop->services; // Assuming the Store model has a relationship with Service
+    return response()->json($services); // Return services as a JSON response
+}
 
     public function toggleActivationStatus(Service $service)
     {
@@ -62,9 +68,14 @@ class ServiceController extends Controller
     }
 
     public function getVariant(Service $service)
-    {
+{
+    if (auth()->user()->hasAnyRole(['admin', 'root'])) {
+        $variants = $service->variants()->get();
+    } else {
         $variants = $service->variants()->where('store_id', auth()->user()->store?->id)->get();
-
-        return response()->json($variants);
     }
+
+    return response()->json($variants);
+}
+
 }

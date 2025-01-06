@@ -73,6 +73,8 @@ Route::middleware(['auth', 'role:admin|visitor|root|vendor|store', 'check_permis
         Route::post('/variants', 'store')->name('variant.store');
         Route::get('/variants/{variant}/products', 'productsVariant')->name('variant.products');
     });
+    Route::get('/shops/{shopId}/services', [ServiceController::class, 'getServicesByShop'])->name('shops.services');
+
 
     // Notification routes
     Route::controller(NotificationController::class)->group(function () {

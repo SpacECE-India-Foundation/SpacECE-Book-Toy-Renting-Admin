@@ -49,7 +49,18 @@
 
                             <input type="hidden" id="slug" name="slug" class="form-control input-default"
                                 value="{{ old('slug') }}">
-
+                                @if(auth()->user()->hasAnyRole(['admin', 'root']))
+                                <div>
+                                    <label class="mb-1">{{ __('Shop') }}</label>
+                                    <x-select name="shop_id" id="shop_id">
+                                        <option value="">{{ __('Select Shop') }}</option>
+                                        @foreach ($shops as $shop)
+                                            <option value="{{ $shop->id }}">{{ $shop->name }}</option>
+                                        @endforeach
+                                    </x-select>
+                                </div>
+                            @endif
+                            
                             <div>
                                 <label class="mb-1">{{ __('Service') }}</label>
                                 <x-select name="service_id">
@@ -84,36 +95,62 @@
 @endsection
 
 @push('scripts')
-    <script>
-        function onlyNumber(evt) {
-            var chars = String.fromCharCode(evt.which);
-            if (!(/[0-9.]/.test(chars))) {
-                evt.preventDefault();
-            }
-        };
+<script>
+    // Function to allow only numbers in input fields
+    function onlyNumber(evt) {
+        var chars = String.fromCharCode(evt.which);
+        if (!(/[0-9.]/.test(chars))) {
+            evt.preventDefault();
+        }
+    }
 
-        $('#name').keyup(function() {
-            $('#slug').val($(this).val().toLowerCase().split(',').join('').replace(/\s/g, "-"));
-        });
+    // Update slug based on name input
+    $('#name').keyup(function() {
+        $('#slug').val($(this).val().toLowerCase().split(',').join('').replace(/\s/g, "-"));
+    });
 
-        $('select[name="service_id"]').on('change', function() {
-            var serviceId = $(this).val();
-            if (serviceId) {
-                $.ajax({
-                    url: `/services/${serviceId}/variants`,
-                    type: "GET",
-                    dataType: "json",
-                    success: function(data) {
-                        $('select[name="variant_id"]').empty();
-                        $.each(data, function(key, value) {
-                            $('select[name="variant_id"]').append('<option value="' + value.id +
-                                '">' + value.name + '</option>');
-                        });
-                    }
-                });
-            } else {
-                $('select[name="variant_id"]').empty();
-            }
-        });
-    </script>
+    // Fetch services when a shop is selected
+    $('select[name="shop_id"]').on('change', function() {
+        var shopId = $(this).val();
+        if (shopId) {
+            $.ajax({
+                url: `/shops/${shopId}/services`, // API to fetch services by shop
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('select[name="service_id"]').empty(); // Clear existing options
+                    $('select[name="service_id"]').append('<option value="">{{ __("Select Service") }}</option>');
+                    $.each(data, function(key, value) {
+                        $('select[name="service_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="service_id"]').empty();
+            $('select[name="service_id"]').append('<option value="">{{ __("Select Service") }}</option>');
+        }
+    });
+
+    // Fetch variants when a service is selected
+    $('select[name="service_id"]').on('change', function() {
+        var serviceId = $(this).val();
+        if (serviceId) {
+            $.ajax({
+                url: `/services/${serviceId}/variants`, // API to fetch variants by service
+                type: "GET",
+                dataType: "json",
+                success: function(data) {
+                    $('select[name="variant_id"]').empty(); // Clear existing options
+                    $('select[name="variant_id"]').append('<option value="">{{ __("Select Variant") }}</option>');
+                    $.each(data, function(key, value) {
+                        $('select[name="variant_id"]').append('<option value="' + value.id + '">' + value.name + '</option>');
+                    });
+                }
+            });
+        } else {
+            $('select[name="variant_id"]').empty();
+            $('select[name="variant_id"]').append('<option value="">{{ __("Select Variant") }}</option>');
+        }
+    });
+</script>
 @endpush
