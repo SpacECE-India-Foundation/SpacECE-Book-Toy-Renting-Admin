@@ -51,7 +51,8 @@
                                     <div class="d-flex align-items-center inputBox">
                                         <div class="input w-100 position-relative">
                                             <input type="password" id="password" class="form-control" name="password"
-                                                placeholder="******">
+                                                placeholder="******" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$" 
+                title="Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character." required>
                                             <span class="eye" onclick="myFunction()">
                                                 <i class="fa fa-eye-slash"></i>
                                             </span>
