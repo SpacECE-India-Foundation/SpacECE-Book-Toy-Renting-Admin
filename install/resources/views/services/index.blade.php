@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+<!-- Prevents the browser (e.g., Google Chrome) from showing the Google Translate popup on this webpage. -->
+<meta name="google" content="notranslate">
+
 @section('content')
     <div class="container-fluid mt-4">
         <div class="row">
