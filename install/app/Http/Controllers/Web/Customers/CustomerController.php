@@ -52,11 +52,25 @@ class CustomerController extends Controller
     public function update(Request $request, Customer $customer)
     {
         $request->validate([
-            'first_name' => 'required|string',
-            'last_name' => 'nullable|string',
-            'mobile' => 'required|numeric|unique:users,mobile,'.$customer->user->id,
-            'email' => 'required|unique:users,email,'.$customer->user->id,
-            'profile_photo' => 'nullable|image|mimes:jpg,jpeg,png',
+            'first_name' => 'required|string|max:255', // Added max length for better validation
+            'last_name' => 'nullable|string|max:255', // Added max length
+            'mobile' => [
+                'required',
+                'numeric',
+                'digits:10',
+                'unique:users,mobile,' . $customer->user->id, // Ensures unique mobile except for the current user
+            ],
+            'email' => [
+                'required',
+                'email', // Ensures a valid email format
+                'unique:users,email,' . $customer->user->id, // Ensures unique email except for the current user
+            ],
+            'profile_photo' => [
+                'nullable',
+                'image', // Ensures the uploaded file is an image
+                'mimes:jpg,jpeg,png', // Restricts allowed image formats
+                'max:2048', // Restricts file size to 2MB for better UX
+            ],
         ]);
         (new UserRepository())->updateProfileByRequest($request, $customer->user);
 

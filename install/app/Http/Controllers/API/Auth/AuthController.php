@@ -47,7 +47,7 @@ class AuthController extends Controller
         $user->assignRole('customer');
 
         $user->update([
-            'mobile_verified_at' => now(),
+            'mobile_verified_at' => null,
         ]);
 
         if ($request->device_key) {
@@ -76,7 +76,7 @@ class AuthController extends Controller
         if (! is_null($user) && $verificationCode->otp == $request->otp) {
             $verificationCode->delete();
             $user->update([
-                'mobile_verified_at' => now(),
+                'mobile_verified_at' => null,
             ]);
 
             return $this->json('Mobile verification complete', [
