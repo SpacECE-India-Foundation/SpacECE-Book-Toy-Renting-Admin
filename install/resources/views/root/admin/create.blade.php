@@ -60,7 +60,7 @@
                                     <label for="">{{ __('Phone_number') }}</label>
                                     <input type="text" onkeypress="onlyNumber(event)" name="phone"
                                         class="form-control @error('phone') is-invalid @enderror"
-                                        placeholder="Phone number ...">
+                                        placeholder="Phone number ..." pattern="^\d{10}$" title="Please enter exactly 10 digits." required>
                                     @error('phone')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
