@@ -38,6 +38,7 @@ use App\Http\Controllers\Web\StripeKeyUpateController;
 use App\Http\Controllers\Web\Variants\VariantController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\PosController;
 
 /*
 +--------------------------------------------------------------------------
@@ -48,6 +49,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+Route::get('pos', [PosController::class, 'index'])->name('pos.index');
 
 Route::controller(ServiceController::class)->group(function () {
     Route::get('/services/{service}/variants', 'getVariant')->name('service.getVariant');
