@@ -62,10 +62,10 @@
                                         </td>
                                     </tr>
 
-                                    <tr>
+                                    {{-- <tr>
                                         <th>{{ __('Date_of_Birth') }}</th>
                                         <td>{{ Carbon\Carbon::parse($customer->user->dob)->format('M d, Y') }}</td>
-                                    </tr>
+                                    </tr> --}}
 
                                     @if (!$customer->addresses->isEmpty())
                                         <tr>

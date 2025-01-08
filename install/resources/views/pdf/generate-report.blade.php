@@ -208,7 +208,7 @@
                         {{ Carbon\Carbon::parse($order->delivery_date)->format('M d, Y') }}
                     </td>
                     <td>{{ $order->customer->user->name }}</td>
-                    <td>{{ $revenue->products->sum('pivot.quantity') }} Pieces</td>
+                    <td>{{ $order->products->sum('pivot.quantity') }} Pieces</td>
                     <td>{{ currencyPosition($order->payable_amount) }}</td>
 
                 </tr>
