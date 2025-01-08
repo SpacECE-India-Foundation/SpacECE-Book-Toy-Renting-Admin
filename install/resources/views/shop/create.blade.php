@@ -47,7 +47,7 @@
 
                                 <div class="col-lg-6 mb-3">
                                     <label class="mb-1">{{ __('Phone_number') }}</label>
-                                    <input type="text" onkeypress="onlyNumber(event)" value="{{ old('mobile') }}" name="mobile" class="form-control" placeholder="Phone number ...">
+                                    <input type="text" onkeypress="onlyNumber(event)" value="{{ old('mobile') }}" name="mobile" class="form-control" placeholder="Phone number ..." pattern="^\d{10}$" title="Please enter exactly 10 digits." requird>
                                     @error('mobile')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
