@@ -50,6 +50,7 @@ Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->na
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Route::get('pos', [PosController::class, 'index'])->name('pos.index');
+Route::get('sales', [PosController::class, 'sales'])->name('pos.sales');
 
 Route::controller(ServiceController::class)->group(function () {
     Route::get('/services/{service}/variants', 'getVariant')->name('service.getVariant');
