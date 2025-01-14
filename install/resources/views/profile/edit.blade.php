@@ -29,8 +29,9 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{ __('Mobile') }}</label>
-                                        <input class="form-control" type="text" name="mobile"
-                                            value="{{ $user->mobile }}" required>
+                                        <input class="form-control" type="text" name="phone"
+                                            value="{{ $user->mobile }}" required pattern="^\d{10}$" title="Please enter exactly 10 digits." >
+
                                     </div>
                                 </div>
                                 <div class="col-md-6">

@@ -32,7 +32,7 @@
                                 <div class="col-12 col-md-6 mb-2">
                                     <label for="">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
                                     <input type="text" class="form-control" name="mobile" value="{{ old('mobile') }}"
-                                        placeholder="Mobile">
+                                        placeholder="Mobile" pattern="^\d{10}$" title="Please enter exactly 10 digits." required>
                                     @error('mobile')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -51,7 +51,8 @@
                                     <div class="d-flex align-items-center inputBox">
                                         <div class="input w-100 position-relative">
                                             <input type="password" id="password" class="form-control" name="password"
-                                                placeholder="******">
+                                                placeholder="******" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$" 
+                title="Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character." required>
                                             <span class="eye" onclick="myFunction()">
                                                 <i class="fa fa-eye-slash"></i>
                                             </span>

@@ -35,7 +35,7 @@
                                 <div class="col-12 col-md-6 mb-2">
                                     <label for="">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
                                     <input type="text" class="form-control" name="mobile"
-                                        value="{{ old('mobile') ?? $customer->user->mobile }}" placeholder="Mobile">
+                                        value="{{ old('mobile') ?? $customer->user->mobile }}" placeholder="Mobile" pattern="^\d{10}$" title="Please enter exactly 10 digits." required>
                                     @error('mobile')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
