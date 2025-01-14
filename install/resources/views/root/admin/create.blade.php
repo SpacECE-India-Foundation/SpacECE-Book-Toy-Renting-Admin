@@ -57,19 +57,19 @@
                                 </div>
 
                                 <div class="col-6 mb-3">
-    <label for="">{{ __('Phone_number') }}</label>
-    <input type="text" 
-           onkeypress="onlyNumber(event)" 
-           name="phone" 
-           class="form-control @error('phone') is-invalid @enderror"
-           placeholder="Phone number ..." 
-           minlength="10"
-           maxlength="10" 
-           oninput="validateLength(this)">
-    @error('phone')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
-</div>
+                                <label for="">{{ __('Phone_number') }}</label>
+                                <input type="text" 
+                                       onkeypress="onlyNumber(event)" 
+                                       name="phone" 
+                                       class="form-control @error('phone') is-invalid @enderror"
+                                       placeholder="Phone number ..." 
+                                       minlength="10"
+                                       maxlength="10" 
+                                       oninput="validateLength(this)">
+                                @error('phone')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
 
                                 <div class="col-6 mb-3">
                                     <label for="">{{ __('Password') }}</label>

@@ -7,7 +7,7 @@ use App\Models\Service;
 
 class ServiceRepository extends Repository
 {
-    private $path = 'images/services/';
+    private $path = 'public/images/services/';
 
     public function model()
     {

@@ -22,9 +22,8 @@ class CustomerController extends Controller
 
     public function show(Customer $customer)
     {
-        return view('customers.show', [
-            'customer' => $customer,
-        ]);
+        $profilePhotoPath = $customer->profilePhotoPath;  // Get the profile photo path
+    return view('customers.show', compact('customer', 'profilePhotoPath'));
     }
 
     public function create()

@@ -49,28 +49,22 @@
                                         </x-select>
                                     </div>
 
-                                  
-To ensure the phone number field accepts only 10 digits, you can implement the following improvements, including front-end and back-end validation:
-
-Updated HTML Code with Front-End Validation
-html
-Copy code
-<div class="col-lg-6 mb-3">
-    <label class="mb-1">{{ __('Phone_number') }}</label>
-    <input 
-        type="text" 
-        onkeypress="onlyNumber(event)" 
-        oninput="validateLength(this)" 
-        value="{{ old('mobile') }}" 
-        name="mobile" 
-        class="form-control" 
-        placeholder="Phone number ..." 
-        minlength="10"
-        maxlength="10">
-    @error('mobile')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
-</div>
+                                    <div class="col-lg-6 mb-3">
+                                        <label class="mb-1">{{ __('Phone_number') }}</label>
+                                        <input 
+                                            type="text" 
+                                            onkeypress="onlyNumber(event)" 
+                                            oninput="validateLength(this)" 
+                                            value="{{ old('mobile') }}" 
+                                            name="mobile" 
+                                            class="form-control" 
+                                            placeholder="Phone number ..." 
+                                            minlength="10"
+                                            maxlength="10">
+                                        @error('mobile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
 
                                     <div class="col-lg-6">
                                         <label class="mb-1">{{ __('Date Of Birth') }}</label>

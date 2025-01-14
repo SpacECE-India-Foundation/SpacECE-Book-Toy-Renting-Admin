@@ -9,11 +9,11 @@
                         <h2 class="card-title m-0">{{ __('Products') }}</h2>
                         <div>
                             <ul class="nav nav-pills justify-content-end">
-                                @role('store')
+                                @hasanyrole('store|admin|root')
                                     <li class="nav-item ml-2 mr-md-0">
                                         <a href="{{ route('product.create') }}" class="btn btn-primary">{{ __('Add_New_Product') }}</a>
                                     </li>
-                                @endrole
+                                @endhasanyrole
                             </ul>
                         </div>
                     </div>
@@ -79,14 +79,14 @@
                                                     </label>
                                                 </td>
                                             @endcan
-                                            @role('store')
+                                            @hasanyrole('store|admin|root')
                                                 <td>
                                                     <a href="{{ route('product.edit', $product->id) }}"
                                                         class="btn btn-sm btn-primary">
                                                         <i class="far fa-edit"></i>
                                                     </a>
                                                 </td>
-                                            @endrole
+                                            @endhasanyrole
                                         </tr>
                                     @endforeach
                                 </tbody>

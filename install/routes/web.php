@@ -38,6 +38,7 @@ use App\Http\Controllers\Web\StripeKeyUpateController;
 use App\Http\Controllers\Web\Variants\VariantController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\PosController;
 
 /*
 +--------------------------------------------------------------------------
@@ -48,6 +49,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', [LoginController::class, 'index'])->middleware('guest')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->middleware('guest')->name('login');
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
+Route::get('pos', [PosController::class, 'index'])->name('pos.index');
+Route::get('sales', [PosController::class, 'sales'])->name('pos.sales');
 
 Route::controller(ServiceController::class)->group(function () {
     Route::get('/services/{service}/variants', 'getVariant')->name('service.getVariant');
@@ -73,6 +76,8 @@ Route::middleware(['auth', 'role:admin|visitor|root|vendor|store', 'check_permis
         Route::post('/variants', 'store')->name('variant.store');
         Route::get('/variants/{variant}/products', 'productsVariant')->name('variant.products');
     });
+    Route::get('/shops/{shopId}/services', [ServiceController::class, 'getServicesByShop'])->name('shops.services');
+
 
     // Notification routes
     Route::controller(NotificationController::class)->group(function () {

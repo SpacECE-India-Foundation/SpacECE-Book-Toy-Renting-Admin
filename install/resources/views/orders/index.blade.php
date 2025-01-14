@@ -54,7 +54,7 @@
                                             @canany(['order.show', 'order.print.invioce'])
                                                 <td class="p-1 ">
                                                     <a href="#address{{ $order->id }}" data-toggle="modal"
-                                                        class="btn btn-primary btn-sm mb-1">
+                                                        class="btn btn-primary btn-sm mb-1" data-toggle="tooltip" title="{{ __('Order address') }}">
                                                         <i class="fa fa-address-card"></i>
                                                     </a>
                                                     <!-- Modal -->
@@ -109,7 +109,7 @@
 
                                                     @can('order.show')
                                                         <a href="{{ route('order.show', $order->id) }}"
-                                                            class="btn btn-primary btn-sm mb-1">
+                                                            class="btn btn-primary btn-sm mb-1" data-toggle="tooltip" title="{{ __('View Order') }}">
                                                             <i class="fa fa-eye"></i>
                                                         </a>
                                                     @endcan
@@ -117,7 +117,7 @@
                                                     @can('order.print.invioce')
                                                         <a class="btn btn-danger btn-sm mb-1"
                                                             href="{{ route('order.print.invioce', $order->id) }}"
-                                                            target="_blank"><i class="fas fa-print"></i>
+                                                            target="_blank" data-toggle="tooltip" title="{{ __('Print Order') }}"><i class="fas fa-print"></i>
                                                         </a>
                                                     @endcan
                                                 </td>

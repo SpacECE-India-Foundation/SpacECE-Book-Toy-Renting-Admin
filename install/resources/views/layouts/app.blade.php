@@ -2,7 +2,7 @@
     $appSetting = App\Models\AppSetting::first();
 @endphp
 <!doctype html>
-<html lang="" dir="{{ $appSetting?->direction }}">
+<html lang="en" dir="{{ $appSetting?->direction }}">
 
 <head>
     <meta charset="utf-8">

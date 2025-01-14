@@ -30,23 +30,24 @@
                                     @enderror
                                 </div>
                                 <div class="col-12 col-md-6 mb-2">
-    <label for="mobile">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
-    <input 
-        type="text" 
-        id="mobile" 
-        class="form-control" 
-        name="mobile" 
-        value="{{ old('mobile') }}" 
-        placeholder="Enter your mobile number" 
-        maxlength="10" 
-        pattern="\d{10}" 
-        required
-        title="Mobile number must be exactly 10 digits.">
-    @error('mobile')
-        <span class="text-danger">{{ $message }}</span>
-    @enderror
-    <input type="hidden" name="type" value="mobile">
-</div>
+
+                                <label for="mobile">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
+                                <input 
+                                    type="text" 
+                                    id="mobile" 
+                                    class="form-control" 
+                                    name="mobile" 
+                                    value="{{ old('mobile') }}" 
+                                    placeholder="Enter your mobile number" 
+                                    maxlength="10" 
+                                    pattern="\d{10}" 
+                                    required
+                                    title="Mobile number must be exactly 10 digits.">
+                                @error('mobile')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <input type="hidden" name="type" value="mobile">
+                            </div>
 
                                 <div class="col-12 col-md-6 mb-2">
                                     <label for="">{{ __('Email') }}</label>
@@ -61,7 +62,8 @@
                                     <div class="d-flex align-items-center inputBox">
                                         <div class="input w-100 position-relative">
                                             <input type="password" id="password" class="form-control" name="password"
-                                                placeholder="******">
+                                                placeholder="******" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$" 
+                title="Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character." required>
                                             <span class="eye" onclick="myFunction()">
                                                 <i class="fa fa-eye-slash"></i>
                                             </span>
