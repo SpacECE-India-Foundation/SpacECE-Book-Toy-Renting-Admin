@@ -12,7 +12,7 @@ use Spatie\Permission\Models\Role;
 
 class StoreRepository extends Repository
 {
-    private $path = 'images/shops/';
+    private $path = 'public/images/shops/';
 
     public function model()
     {

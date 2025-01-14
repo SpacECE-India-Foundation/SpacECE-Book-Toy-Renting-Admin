@@ -432,7 +432,7 @@
         {{-- total qty section --}}
         @php
             use Rmunate\Utilities\SpellNumber;
-            $spellNumber = SpellNumber::value(425)->toLetters();
+            $spellNumber = "Four Hundred Twenty Five"; //SpellNumber::value(425)->toLetters();
         @endphp
         <div class="totalQTY clearfix w-100">
             <div class="float-left">Total Quantity: 12</div>
