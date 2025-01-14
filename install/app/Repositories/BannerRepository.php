@@ -27,6 +27,7 @@ class BannerRepository extends Repository
 
     public function storeByRequest(BannerRequest $request): Banner
     {
+        
         $thumbnail = (new MediaRepository())->storeByRequest(
             $request->image,
             $this->path,

@@ -51,9 +51,17 @@
 
                                     <div class="col-lg-6 mb-3">
                                         <label class="mb-1">{{ __('Phone_number') }}</label>
-                                        <input type="text" onkeypress="onlyNumber(event)" name="mobile"
-                                            class="form-control" value="{{ $user->mobile }}" pattern="^\d{10}$" title="Please enter exactly 10 digits." required>
-                                        @error('phone')
+                                        <input 
+                                            type="text" 
+                                            onkeypress="onlyNumber(event)" 
+                                            oninput="validateLength(this)" 
+                                            value="{{ old('mobile') }}" 
+                                            name="mobile" 
+                                            class="form-control" 
+                                            placeholder="Phone number ..." 
+                                            minlength="10"
+                                            maxlength="10">
+                                        @error('mobile')
                                             <span class="text-danger">{{ $message }}</span>
                                         @enderror
                                     </div>

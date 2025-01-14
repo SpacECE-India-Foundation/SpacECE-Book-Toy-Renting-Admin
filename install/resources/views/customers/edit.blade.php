@@ -33,13 +33,25 @@
                                     @enderror
                                 </div>
                                 <div class="col-12 col-md-6 mb-2">
-                                    <label for="">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
-                                    <input type="text" class="form-control" name="mobile"
-                                        value="{{ old('mobile') ?? $customer->user->mobile }}" placeholder="Mobile" pattern="^\d{10}$" title="Please enter exactly 10 digits." required>
-                                    @error('mobile')
-                                        <span class="text-danger">{{ $message }}</span>
-                                    @enderror
-                                </div>
+
+                                <label for="mobile">{{ __('Mobile_number') }} <strong class="text-danger">*</strong></label>
+                                <input 
+                                    type="text" 
+                                    id="mobile" 
+                                    class="form-control" 
+                                    name="mobile" 
+                                    value="{{ old('mobile') }}" 
+                                    placeholder="Enter your mobile number" 
+                                    maxlength="10" 
+                                    pattern="\d{10}" 
+                                    required
+                                    title="Mobile number must be exactly 10 digits.">
+                                @error('mobile')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                                <input type="hidden" name="type" value="mobile">
+                            </div>
+
                                 <div class="col-12 col-md-6 mb-2">
                                     <label for="">{{ __('Email') }}</label>
                                     <input type="text" class="form-control" name="email"
