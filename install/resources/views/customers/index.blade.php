@@ -36,6 +36,7 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">{{ __('Name') }}</th>
+                                        <th scope="col">{{ __('Image') }}</th>
                                         <th scope="col">{{ __('Email') }}</th>
                                         <th scope="col">{{ __('Mobile') }}</th>
                                         @canany(['customer.show', 'customer.edit'])
@@ -47,6 +48,12 @@
                                     @foreach ($customers as $customer)
                                         <tr>
                                             <td>{{ $customer->user->name }}</td>
+                                            <td class="py-2">
+                                                <div class="thumbnail">
+                                                    <img width="100%" src="{{ asset($customer->profilePhotoPath) }}"
+                                                        alt="">
+                                                </div>
+                                            </td>
                                             <td>
                                                 {{ $customer->user->email }}
                                             </td>

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class BannerRepository extends Repository
 {
-    private $path = 'images/banners/';
+    private $path = 'public/images/banners/';
 
     public function model()
     {

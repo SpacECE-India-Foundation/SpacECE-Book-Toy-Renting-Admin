@@ -29,7 +29,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>{{ __('Mobile') }}</label>
-                                        <input class="form-control" type="text" name="phone"
+                                        <input class="form-control" type="text" name="mobile"
                                             value="{{ $user->mobile }}" required>
                                     </div>
                                 </div>

@@ -10,6 +10,7 @@ use App\Repositories\StoreRepository;
 use Carbon\Carbon;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class ReportController extends Controller
 {
@@ -60,8 +61,18 @@ class ReportController extends Controller
             $stores = (new StoreRepository())->query()->where('id', $id)->get();
             $fileName = $stores[0]->name.'.xlsx';
         }
-
         $storesCollection = collect([]);
+        $storesCollection[] = [
+            'sl' => 'SL',
+            'name' => 'Name',
+            'commission' => 'Commission',
+            'total_selling' => 'Total Selling',
+            'total_revenue' => 'Total Revenue',
+            'commission_cost' => 'Commission Cost',
+            'total_order' => 'Total Order',
+            'total_cancle' => 'Total Cancel Order',
+            'create_at' => 'Created At',
+        ];
         foreach ($stores as $store) {
             $productIds = $store->products()->pluck('id')->toArray();
             $total = \App\Models\OrderProduct::whereIn('id', $productIds)->get();
@@ -69,6 +80,7 @@ class ReportController extends Controller
             $cancle = $store->orders->where('order_status', 'Cancelled')->count();
 
             $collection = [
+                'id'=>$store->id,
                 'name' => $store->name,
                 'commission' => $store->commission.'%',
                 'total_selling' => (string) $total->sum('quantity'),

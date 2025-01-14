@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository extends Repository
 {
-    private $path = 'images/customers/';
+    private $path = 'public/images/customers/';
 
     public function model()
     {
